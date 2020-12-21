@@ -1,3 +1,4 @@
+## SISSO
 In file SISSO, file SISSOmodels output the result of SISSO model under different complexity (3, 4, 5, 6, 7) and dimension (1D, 2D and 3D). e.g., output_complexity3 means the result under model SISSO of complexity 3 and dimension 1D, 2D, output_complexity3_3D means the result under model SISSO of complexity 3 and dimension 3D. File complexity3_2D_cv10 outputs the 10CV result of SISSO model of complexity 3 and dimension 2 of each fold.
 The output of desc_dats include the real value and the predicted value of SISSO model, and the relative coefficient of each feature to the predicted target. Then SISSO_R2.py is used to calculate the R² value of each SISSO model with the real value and the predicted value in file desc_dats. 
 The programmer to run SISSO is as in https://github.com/rouyang2017/SISSO .
