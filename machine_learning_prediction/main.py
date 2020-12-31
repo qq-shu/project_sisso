@@ -17,6 +17,7 @@ from sklearn.linear_model import Lasso
 from sklearn.model_selection import train_test_split
 import pandas as pd
 
+# shuffled the dataset
 data_array = np.loadtxt('shuffled_fatigue21.csv',encoding='utf-8-sig',delimiter=',')
 # data_array = pd.read_csv('fatigue21.csv')
 # data_array = data_array.sample(frac=1).reset_index(drop=True)
@@ -24,6 +25,7 @@ data_array = np.loadtxt('shuffled_fatigue21.csv',encoding='utf-8-sig',delimiter=
 # data_array = data_array.values
 
 time_start = time.time()
+## build the priority model of GBDT,SVR,DT with GridSearch for selecting the best parameter for each prediction model, use 10 cross validation
 model_pz = GridSearchCV(make_pipeline(preprocessing.StandardScaler(),GradientBoostingRegressor()),
                         param_grid={'gradientboostingregressor__n_estimators':[100,200,300,400,500],'gradientboostingregressor__learning_rate':[0.001,0.01,0.1,1],'gradientboostingregressor__max_depth':[1,2,3,4,5]},cv=10,scoring='r2',return_train_score=True)
 # model_pz = GridSearchCV(make_pipeline(StandardScaler(),SVR()), param_grid={'svr__gamma': [0.01,0.05,0.1, 0.5, 1],'svr__C': [ 100, 150, 200]}, cv=10,scoring='r2',refit=True)
@@ -34,14 +36,11 @@ Y = data_array[:,-1]
 # X_train,X_test,Y_train,Y_test=train_test_split(X,Y,random_state=33,test_size=0.1)
 # model_pz.fit(X_train,Y_train)
 model_pz.fit(X,Y)
-# model_pz = model_pz.sample(frac=1).reset_index(drop=True)
 # print(model_pz.scoring)
 # print(model_pz.return_train_score)
 print(model_pz.best_params_)
 print(model_pz.best_score_)
 print(model_pz.cv_results_['mean_test_score'])
-# print(model_pz.score(X,Y))
-# svm_pre = model_pz.predict(X)
 Y_pre=model_pz.predict(X)
 print(Y_pre)
 time_end = time.time()
@@ -67,11 +66,7 @@ plt.show()
 plt.savefig('Y_Ypre_021.png')
 plt.cla()
 
-# print(mean_squared_error(Y, svm_pred, sample_weight=None, multioutput='uniform_average'))
-# time = 1000000 * ( end.tv_sec - start.tv_sec ) + end.tv_usec - start.tv_usec;
-# 	cout << "time：" << time << "s" <<endl;
-# print(time_end-time_start)
-
+print(time_end-time_start)
 print(r2_score(Y,Y_pre))
 # print(mean_squared_error(Y,Y_pre))
 print(np.sqrt(mean_squared_error(Y,Y_pre)))
