@@ -17,36 +17,5 @@ pso.run()
 # print out the best target value and the related values of the 6-dimensional designed features
 print('best_x is ', pso.gbest_x, 'best_y is', pso.gbest_y)
 time_end = time.time()
+# print out the running time of PSO search on SISSO model
 print(time_end-time_start)
-
-## below use matplotlib package to figure out the pso process visually
-# import matplotlib.pyplot as plt
-# from matplotlib.animation import FuncAnimation
-# record_value = pso.record_value
-# X_list, V_list = record_value['X'], record_value['V']
-# fig, ax = plt.subplots(1, 1)
-# ax.set_title('title', loc='center')
-# line = ax.plot([], [], 'b.')
-
-# X1_grid, X2_grid,X3_grid,X4_grid,X5_grid,X6_grid = np.meshgrid(np.linspace(1.0,1.0, 0.1,0.1,0.1,1.0, 1.0), np.linspace(1.0,1.0, 0.1,0.1,0.1,1.0, 1.0))
-# Z_grid = demo_func((X1_grid, X2_grid,X3_grid,X4_grid,X5_grid,X6_grid))
-# # ax.contour(X_grid, Y_grid, Z_grid, 20)
-# print(Z_grid)
-
-# ax.set_xlim(-1, 1)
-# ax.set_ylim(-1, 1)
-
-# plt.ion()
-# p = plt.show()
-
-
-# def update_scatter(frame):
-#     i, j = frame // 10, frame % 10
-#     ax.set_title('iter = ' + str(i))
-#     X_tmp = X_list[i] + V_list[i] * j / 10.0
-#     plt.setp(line, 'xdata', X_tmp[:, 0], 'ydata', X_tmp[:, 1])
-#     return line
-
-# ani = FuncAnimation(fig, update_scatter, blit=True, interval=25, frames=300)
-# plt.show()
-# ani.save('pso.gif', writer='pillow')
