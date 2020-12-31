@@ -22,7 +22,7 @@ def read_data():
     # return x_train, x_test, y_train, y_test
 
 def create_and_fit_model(x_train, y_train):
-    # define model（21-dimesional input，one-dimesional output）
+    # define model（21-dimensional input，one-dimensional output）
     # Here use StandardScaler() to do normalization，and the pso search result will show the nomalized values of x afterwards
     # but with saving the normalized StandardScaler, we can recover the nomalized data to feature values as the result
     # model_pz = GridSearchCV(make_pipeline(StandardScaler(),SVR()), param_grid={'svr__gamma': [0.01,0.05,0.1, 0.5, 1],'svr__C': [ 100, 150, 200]}, cv=10,scoring='r2',refit=True)
